@@ -12,6 +12,9 @@ CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) da
 * Search by CVE Number and Year.
 * Return CVE Reference Links
 
+* Add Tests
+* Add Documentation
+
 == INSTALL:
 
  sudo gem install CVEasy
