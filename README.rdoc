@@ -4,7 +4,7 @@
 
 == DESCRIPTION:
 
-CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) database at http://cve.mitre.org. This project is mostly a prof of concept on parsing the unparseable and showing how truly powerful nokogiri['http://nokogiri.rubyforge.org'] can be.
+CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) database at http://cve.mitre.org. This project is mostly a prof of concept on parsing the unparseable and showing how truly powerful {nokogiri}['http://nokogiri.rubyforge.org'] can be.
 
 == FEATURES/PROBLEMS:
 
