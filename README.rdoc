@@ -1,0 +1,87 @@
+= CVEasy
+
+* http://github.com/mephux/CVEasy
+
+== DESCRIPTION:
+
+CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) database at http://cve.mitre.org. This project is mostly a prof of concept on parsing the unparseable and showing how truly powerful nokogiri['http://nokogiri.rubyforge.org'] can be.
+
+== FEATURES/PROBLEMS:
+
+* Search by Keywords
+* Search by CVE Number and Year.
+* Return CVE Reference Links
+
+== INSTALL:
+
+ sudo gem install CVEasy
+
+== SYNOPSIS:
+
+You can use CVEasy to search for a particular CVE by using the following:
+ 
+ CVEasy::Query.new(:year => '2008', :cve => '1') do |cve|
+   
+   puts cve.name            #=> "CVE-2008-0001"
+   puts cve.description     #=> "FS in the Linux kernel before 2.6.22.16, and 2.6.23.x before...."
+   puts cve.references      #=> ['http://secunia.com/advisories/28664', 'http://xforce.iss.net/xforce/xfdb/39672']
+   puts cve.status          #=> "Candidate"
+   puts cve.phase           #=> "Assigned (20071203)"
+   puts cve.assigned_at     #=> "Candidate assigned on 20071203 and proposed on N/A"
+   
+ end
+ 
+If you want to search for CVE by a keyword use the following:
+
+ CVEasy::Query.new(:keyword => 'ruby') do |cve|
+
+   puts cve.name
+   puts cve.description
+   puts cve.url
+
+ end
+
+You can take the above example even further by querying the returned results:
+
+ CVEasy::Query.new(:keyword => 'ruby') do |cve|
+
+   puts cve.name
+
+   cve.more do |more|
+     
+       puts more.references.inspect
+       puts more.status
+       puts more.phase
+       puts more.assigned_at
+     
+   end
+ end
+
+== REQUIREMENTS:
+
+* nokogiri http://nokogiri.rubyforge.org >= 1.4.0
+
+== LICENSE:
+
+(The MIT License)
+
+Copyright (c) 2009 Dustin Willis Webber
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
