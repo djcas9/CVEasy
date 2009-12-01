@@ -40,15 +40,15 @@ If you want to search for CVE by a keyword use the following:
 
 You can take the above example even further by querying the returned results:
 
-  CVEasy::Query.new(:keyword => 'ruby') do |cve|
-    puts cve.name
-    cve.more do |info|
-      puts info.references.inspect
-      puts info.status
-      puts info.phase
-      puts info.assigned_at
-    end
-  end
+ CVEasy::Query.new(:keyword => 'ruby') do |cve|
+   puts cve.name
+   cve.more do |info|
+     puts info.references.inspect
+     puts info.status
+     puts info.phase
+     puts info.assigned_at
+   end
+ end
 
 == REQUIREMENTS:
 
