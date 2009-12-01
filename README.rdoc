@@ -5,16 +5,13 @@
 
 == DESCRIPTION:
 
-CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) database at http://cve.mitre.org. This project is mostly a prof of concept on parsing the unparseable and showing how truly powerful nokogiri (http://nokogiri.rubyforge.org) can be.
+CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) database at http://cve.mitre.org. This project is mostly a proof of concept and experiment highlighting how truly powerful nokogiri (http://nokogiri.rubyforge.org) can be.
 
 == FEATURES/PROBLEMS:
 
 * Search by Keywords
 * Search by CVE Number and Year.
 * Return CVE Reference Links
-
-* Add Tests
-* Add Documentation
 
 == INSTALL:
 
@@ -25,45 +22,44 @@ CVEasy is a ruby interface for the Common Vulnerabilities and Exposures (CVE) da
 You can use CVEasy to search for a particular CVE by using the following:
  
  CVEasy::Query.new(:year => '2008', :cve => '1') do |cve|
-   
    puts cve.name            #=> "CVE-2008-0001"
    puts cve.description     #=> "FS in the Linux kernel before 2.6.22.16, and 2.6.23.x before...."
    puts cve.references      #=> ['http://secunia.com/advisories/28664', 'http://xforce.iss.net/xforce/xfdb/39672']
    puts cve.status          #=> "Candidate"
    puts cve.phase           #=> "Assigned (20071203)"
    puts cve.assigned_at     #=> "Candidate assigned on 20071203 and proposed on N/A"
-   
  end
  
 If you want to search for CVE by a keyword use the following:
 
  CVEasy::Query.new(:keyword => 'ruby') do |cve|
-
    puts cve.name
    puts cve.description
    puts cve.url
-
  end
 
 You can take the above example even further by querying the returned results:
 
- CVEasy::Query.new(:keyword => 'ruby') do |cve|
+  CVEasy::Query.new(:keyword => 'ruby') do |cve|
 
-   puts cve.name
+    puts cve.name
 
-   cve.more do |more|
-     
-       puts more.references.inspect
-       puts more.status
-       puts more.phase
-       puts more.assigned_at
-     
-   end
- end
+    cve.more do |info|
+      puts info.references.inspect
+      puts info.status
+      puts info.phase
+      puts info.assigned_at
+    end
+  end
 
 == REQUIREMENTS:
 
 * nokogiri http://nokogiri.rubyforge.org >= 1.4.0
+
+== TODO
+
+* Add Tests
+* Add Documentation
 
 == LICENSE:
 
